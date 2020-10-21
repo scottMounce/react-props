@@ -136,7 +136,8 @@ var AddToDo = /*#__PURE__*/function (_React$Component) {
       todo: '',
       count: 1
     };
-    _this.sendToParent = _this.sendToParent.bind(_assertThisInitialized(_this));
+    _this.sendToParent = _this.sendToParent.bind(_assertThisInitialized(_this)); //we bind this here in order to keep this context and use this function in this context or in easier words (on this page)
+
     _this.updateToDo = _this.updateToDo.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -144,21 +145,26 @@ var AddToDo = /*#__PURE__*/function (_React$Component) {
   _createClass(AddToDo, [{
     key: "sendToParent",
     value: function sendToParent() {
-      this.state.count++;
+      this.state.count++; //increment a count to keep track of a unique key for each child 
+
       var newToDo = {
+        //creating an object that we can send to the parent and add to the todos array 
         id: this.state.count,
         value: this.state.todo
       };
-      this.props.iSendThingsToTheParent(newToDo);
+      this.props.iSendThingsToTheParent(newToDo); //call function from parent to update the todos array   
+
       this.setState({
-        todo: ''
+        todo: '' //reset the todo to blank on page 
+
       });
     }
   }, {
     key: "updateToDo",
     value: function updateToDo(e) {
       this.setState({
-        todo: e.target.value
+        todo: e.target.value //sets the todo state to the target value of the input tag below    
+
       });
     }
   }, {
@@ -235,7 +241,9 @@ var App = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       constant: '',
-      todos: []
+      //constant state change 
+      todos: [] //todos array contains the object we create 
+
     };
     return _this;
   }
@@ -244,22 +252,26 @@ var App = /*#__PURE__*/function (_React$Component) {
     key: "handleChange",
     value: function handleChange(value) {
       this.setState({
-        constant: value
+        constant: value //updates the constant state as it changes 
+
       });
     }
   }, {
     key: "loadToDo",
     value: function loadToDo(value) {
-      var newData = this.state.todos.slice();
-      newData.push(value);
+      var newData = this.state.todos.slice(); //copy the original state 
+
+      newData.push(value); //push the new value into the array 
+
       this.setState({
-        todos: newData
+        todos: newData //set state to the new array with the added value 
+
       });
     }
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Hello World!", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ConstantChange_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "React Props To Do", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ConstantChange_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
         dave: this.state.constant,
         handleChange: this.handleChange.bind(this)
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddToDo_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -291,6 +303,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ConstantChange = function ConstantChange(props) {
+  // props is what we have sent to this child in this case we have 2 props dave and handleChange
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, props.dave), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     onChange: function onChange(e) {
       props.handleChange(e.target.value);
@@ -317,7 +330,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var DoEntry = function DoEntry(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, props.dos.value);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, props.dos.value) // our dos value is all we need to display
+  ;
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (DoEntry);
@@ -342,9 +356,12 @@ __webpack_require__.r(__webpack_exports__);
 var ToDoList = function ToDoList(_ref) {
   var listOfDos = _ref.listOfDos;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, listOfDos.map(function (dos) {
+    // map over our list of dos, and do is a reserved word, so we will just use dos here, but know it is just one do
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DoEntry_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      key: dos.id,
-      dos: dos
+      key: dos.id //when we map we need to have a key thus the count from when we created our object 
+      ,
+      dos: dos //dos equal a do!
+
     });
   }));
 };
