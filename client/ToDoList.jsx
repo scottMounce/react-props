@@ -3,7 +3,13 @@ import DoEntry from './DoEntry.jsx';
 
 
 const ToDoList = ({listOfDos}) => {
-    
+  //notice our parameter, isn't props... we can also add the parameter of whatever we labeled our prop in the parent
+  // and not use propsDOT if we wrap it in curly braces   
+
+
+
+
+
   return (
     <div>
       {listOfDos.map((dos) => {

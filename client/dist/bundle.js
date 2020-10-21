@@ -355,6 +355,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var ToDoList = function ToDoList(_ref) {
   var listOfDos = _ref.listOfDos;
+  //notice our parameter, isn't props... we can also add the parameter of whatever we labeled our prop in the parent
+  // and not use propsDOT if we wrap it in curly braces   
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, listOfDos.map(function (dos) {
     // map over our list of dos, and do is a reserved word, so we will just use dos here, but know it is just one do
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DoEntry_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
